@@ -45,7 +45,7 @@ interface CropperProps {
   H: number;
 }
 
-const Cropper: React.FC<CropperProps> = props => {
+const Cropper: React.FC<CropperProps> = (props) => {
   const styles = getStyles(props.COMPONENT_WIDTH, props.COMPONENT_HEIGHT, props.W);
   return (
     <View style={styles.container}>
@@ -53,7 +53,7 @@ const Cropper: React.FC<CropperProps> = props => {
         <Image style={props.getImageStyle()} source={{ uri: props.imageUri }} />
       </View>
 
-      <View style={styles.footerContainer}>
+      <View style={[styles.footerContainer, { top: 0 }]}>
         {React.cloneElement(props.footerComponent, {
           onDone: props.onDone,
           onRotate: props.onRotate,
@@ -67,8 +67,14 @@ const Cropper: React.FC<CropperProps> = props => {
         // @ts-ignore */}
       <Animated.View ref={props.leftOuterRef} style={[styles.animation, props.getLeftOuterStyle()]} {...props.leftOuterPanResponder.panHandlers} />
       {/*
-        // @ts-ignore */ /* eslint-disable-line */ /* eslint-disable-next-line prettier/prettier */}
-      <Animated.View ref={props.bottomOuterRef} style={[styles.animation, props.getBottomOuterStyle()]} {...props.bottomOuterPanResponder.panHandlers} />
+        // @ts-ignore */
+      /* eslint-disable-line */
+      /* eslint-disable-next-line prettier/prettier */}
+      <Animated.View
+        ref={props.bottomOuterRef}
+        style={[styles.animation, props.getBottomOuterStyle()]}
+        {...props.bottomOuterPanResponder.panHandlers}
+      />
       {/*
         // @ts-ignore */}
       <Animated.View ref={props.rightOuterRef} style={[styles.animation, props.getRightOuterStyle()]} {...props.rightOuterPanResponder.panHandlers} />
@@ -80,9 +86,15 @@ const Cropper: React.FC<CropperProps> = props => {
 
       <Animated.View style={[styles.animation, styles.topLeftAnimation, props.getTopLeftStyle()]} {...props.topLeftPanResponder.panHandlers} />
       {/* eslint-disable-next-line prettier/prettier */}
-      <Animated.View style={[styles.animation, styles.bottomLeftAnimation, props.getBottomLeftStyle()]} {...props.bottomLeftPanResponder.panHandlers} />
+      <Animated.View
+        style={[styles.animation, styles.bottomLeftAnimation, props.getBottomLeftStyle()]}
+        {...props.bottomLeftPanResponder.panHandlers}
+      />
       {/* eslint-disable-next-line prettier/prettier */}
-      <Animated.View style={[styles.animation, styles.bottomRightAnimation, props.getBottomRightStyle()]} {...props.bottomRightPanResponder.panHandlers} />
+      <Animated.View
+        style={[styles.animation, styles.bottomRightAnimation, props.getBottomRightStyle()]}
+        {...props.bottomRightPanResponder.panHandlers}
+      />
       <Animated.View style={[styles.animation, styles.topRightAnimation, props.getTopRightStyle()]} {...props.topRightPanResponder.panHandlers} />
 
       <Animated.View style={[styles.animation, props.getRectangleStyle()]} {...props.rectanglePanResponder.panHandlers}>
